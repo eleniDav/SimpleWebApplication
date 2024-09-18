@@ -1,0 +1,21 @@
+body{
+    background-color: cornsilk;
+}
+#tdata{
+    position: relative;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 50%;
+    overflow-wrap: break-word;
+    border-collapse: collapse;
+    overflow: auto;
+}
+th{
+    background-color: darkred;
+}
+th,td{
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid black;
+}

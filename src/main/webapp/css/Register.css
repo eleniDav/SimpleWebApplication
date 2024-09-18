@@ -1,0 +1,25 @@
+body{
+    background-color: cornsilk;
+}
+#info{
+    position: relative;
+    display: grid;
+    width: 40%;
+    margin: auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border: 1px solid darkred;
+    overflow: auto;
+    padding: 3%;
+}
+label{
+    display: inline-block;
+    width: fit-content;
+    font-weight: bold;
+}
+.btns{
+    margin: auto;
+}
+textarea{
+    resize: none;
+}

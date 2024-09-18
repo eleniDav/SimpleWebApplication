@@ -1,0 +1,22 @@
+#container{
+    overflow: hidden;
+    background-color: darkred;
+    top: 0;
+}
+.btns{
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 5px;
+    width: 150px;
+    background-color: darkred;
+    border: none;
+}
+.btns:hover{
+    background-color: white;
+    color: darkred;
+}
+#main:hover{
+    background-color: black;
+    color: darkred;
+}
