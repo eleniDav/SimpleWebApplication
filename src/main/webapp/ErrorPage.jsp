@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" isErrorPage="true"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" isErrorPage="true" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,7 +7,7 @@
     </head>
     <body>
         <h2>Sorry, something went wrong..</h2>
-        Exception message: <%= exception.getMessage()%>
+        Exception message: <%= exception.getMessage() %>
         <br>Please go back to the <a href="index.html">Homepage</a>
     </body>
 </html>

@@ -18,6 +18,11 @@ public class User {
         this.haddress = haddress;
     }
     
+    public User(String fname, String lname){
+        this.fname = fname;
+        this.lname = lname;
+    }
+    
     public int getId() {
         return id;
     }

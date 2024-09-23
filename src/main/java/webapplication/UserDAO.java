@@ -3,7 +3,11 @@ package webapplication;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
     private String url;
@@ -22,7 +26,7 @@ public class UserDAO {
     //to create the connection to our db
     protected void connect() throws SQLException{
         if(con == null || con.isClosed())
-            con = DriverManager.getConnection(url, url, pass);
+            con = DriverManager.getConnection(url, uname, pass);
     }
     
     //to close that connection when we're done
@@ -31,7 +35,7 @@ public class UserDAO {
             con.close();
     }
     
-    //registering users to db
+    //registering users to db (for RegisterUser.jsp)
     public void registerUser(User user) throws SQLException{
         String sql1 = "insert into userInfo (FirstName,LastName,Gender,Birthdate) values(?,?,?,?)";
         String sql2 = "insert into address (WorkAddress,HomeAddress) values (?,?)";
@@ -55,5 +59,31 @@ public class UserDAO {
         st1.close();
         st2.close();
         disconnect();
+    }
+    
+    //displaying all names and last names (for DisplayUsers.jsp)
+    public List<User> displayUsers() throws SQLException{
+        List<User> users = new ArrayList<>();
+        
+        String sql = "select FirstName,LastName from userInfo";
+        
+        connect();
+        
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        
+        while(rs.next()){
+            String fname = rs.getString("FirstName");
+            String lname = rs.getString("LastName");
+            
+            User user = new User(fname,lname);
+            users.add(user);
+        }
+        
+        rs.close();
+        st.close();
+        disconnect();
+        
+        return users;
     }
 }
