@@ -21,6 +21,7 @@
                     <td><c:out value="${users.lname}" /></td>
                     <td id="btns1">
                         <form action="ApplicationServlet" method="post">
+                            <input type="hidden" name="id" value="<c:out value='${users.id}' />" />
                             <input type="submit" name="actions" value="More Info" class="btns"/>
                             <input type="submit" name="actions" value="Delete" class="btns"/>
                         </form>

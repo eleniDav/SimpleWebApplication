@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -46,18 +47,37 @@ public class ApplicationServlet extends HttpServlet {
                     User newUser = new User(fname,lname,gender,birthdate,waddress,haddress);
                     userDAO.registerUser(newUser);
                     
-                    //no forward or break on purpose so next case will be executed immediately after
-                    
+                    display(req,res);
+                    break;                    
                 case "Display Users":
-                    List<User> userList = userDAO.displayUsers();
+                    display(req,res);
+                    break;
+                case "More Info":
+                    int id1 = Integer.parseInt(req.getParameter("id"));
+                    User user1 = new User(id1);
+                    User tmp = userDAO.displayUserInfo(user1);
                     
-                    req.setAttribute("userList", userList);
-                    
-                    req.getRequestDispatcher("/WEB-INF/DisplayUsers.jsp").forward(req, res);
+                    //to show the specific user info in different jsp
+                    req.setAttribute("user", tmp);
+                    req.getRequestDispatcher("/WEB-INF/forMoreInfo.jsp").forward(req, res);
+                    break;
+                case "Delete":
+                    int id2 = Integer.parseInt(req.getParameter("id"));
+                    User user2 = new User(id2);
+                    userDAO.deleteUser(user2);
+                    display(req,res);
                     break;
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+    
+    private void display(HttpServletRequest req, HttpServletResponse res) throws ServletException, SQLException, IOException{
+        List<User> userList = userDAO.displayUsers();
+                    
+        req.setAttribute("userList", userList);
+                    
+        req.getRequestDispatcher("/WEB-INF/DisplayUsers.jsp").forward(req, res);
     }
 }

@@ -18,9 +18,14 @@ public class User {
         this.haddress = haddress;
     }
     
-    public User(String fname, String lname){
+    public User(int id, String fname, String lname){
+        this.id = id;
         this.fname = fname;
         this.lname = lname;
+    }
+    
+    public User(int id){
+        this.id = id;
     }
     
     public int getId() {
